@@ -23,12 +23,14 @@ import {sendPublicKeyToServer} from '../hooks/sendServer';
 
 const MAPPING = {
   ES: {name: 'España', x: -50, y: 85},
+  FR: {name: 'Francia', x: 10, y: 15},
 } as const;
 
 export type MarkerCoordinates = keyof typeof MAPPING;
 
 const VPNScreen = () => {
-  const [selectedLocation] = useState<MarkerCoordinates>('ES');
+  const [selectedLocation, setSelectedLocation] =
+    useState<MarkerCoordinates>('ES');
   const markerCoordinates = MAPPING[selectedLocation as keyof typeof MAPPING];
   const [vpnState, setVpnState] = useState<number | null>(2); // cambiar por null
   const [connecting, setConnecting] = useState<boolean>(false);
@@ -65,23 +67,12 @@ const VPNScreen = () => {
 
   const rnBiometrics = new ReactNativeBiometrics();
 
-  useEffect(() => {
-    // Hacemos el fetch al API
-    fetch('http://192.168.1.39/pr.php') // Sustituye con la URL que necesites
-      .then(response => response.json()) // Convertimos la respuesta en JSON
-      .then(data => {
-        console.log(data); // Mostramos los datos en la consola
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error); // Manejamos errores
-      });
-  }, []);
-
   /*   useEffect(() => {
     const checkVpnState = async () => {
       try {
         const state = await RNSimpleOpenvpn.getCurrentState();
         setVpnState(state);
+        setSelectedLocation('FR');
       } catch (error) {
         console.error('Error obteniendo el estado del VPN', error);
         setVpnState(null);
@@ -168,7 +159,6 @@ const VPNScreen = () => {
             );
           }
         });
-        // Aquí puedes ejecutar la acción tras autenticación
       } else {
         Alert.alert('Cancelado', 'No se autenticó');
       }
