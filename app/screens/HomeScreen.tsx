@@ -72,7 +72,6 @@ const VPNScreen = () => {
       try {
         const state = await RNSimpleOpenvpn.getCurrentState();
         setVpnState(state);
-        setSelectedLocation('FR');
       } catch (error) {
         console.error('Error obteniendo el estado del VPN', error);
         setVpnState(null);
@@ -112,6 +111,7 @@ const VPNScreen = () => {
       await disconnectVPN();
     } else {
       await connectVPN();
+      setSelectedLocation('FR');
     }
 
     const state = await RNSimpleOpenvpn.getCurrentState();

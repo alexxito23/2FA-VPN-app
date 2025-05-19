@@ -43,7 +43,7 @@ export default function App() {
             }}
           />
           <Tab.Screen
-            name="Settings"
+            name="Conexión"
             component={SettingsScreen}
             options={{
               tabBarIcon: ({color}) => (
@@ -55,7 +55,7 @@ export default function App() {
             }}
           />
           <Tab.Screen
-            name="Profile"
+            name="Perfiles"
             component={ProfileScreen}
             options={{
               tabBarIcon: ({color}) => (
