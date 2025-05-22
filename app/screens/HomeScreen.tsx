@@ -205,14 +205,14 @@ const VPNScreen = () => {
       </View>
 
       <View className="w-[250] gap-4">
-        <TouchableOpacity
+        {/* <TouchableOpacity
           className="py-4 bg-[#0fab94] items-center rounded-[10]"
           onPress={handleConnectToggle}
           disabled={connecting}>
           <Text className="text-white text-base font-bold">
             {vpnState === 2 ? 'DESCONECTAR' : 'CONECTAR'}
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         {vpnState === 2 && (
           <View className="flex w-[250] items-center justify-center gap-4">
